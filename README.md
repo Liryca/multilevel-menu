@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# How To Run:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 1) json-server HelpTOC.json --watch --port 3001
+- 2) npm start
 
-## Available Scripts
+# Task Description:
 
-In the project directory, you can run:
+## Требования:
+  - Использовать актуальную версию библиотеки React для реализации логики и представления.
+  - Для написания стилей желательно использовать PostCSS, LESS/SASS, CSS-модули или CSS-in-JS библиотеку.
+  - Нельзя использовать специализированные библиотеки для построения оглавления и деревьев, но можно использовать вспомогательные (для  управления состоянием, анимации и т.п.)
+  - Данные в JSON должны загружаться асинхронно из локального веб-сервера.
+  - Пока пункты оглавления не отрисованы, пользователь должен видеть “заглушку” из дизайн-макета.
+  - При клике на корневой элемент ветки или на стрелку рядом с ним, вложенный список должен сворачиваться/разворачиваться.
+  - Сделать плавные анимации для смены цветов и изменения положения иконки.
 
-### `npm start`
+### Будет плюсом, если вы реализуете:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+JS API
+  - выбор активного пункта по ID
+  - фильтрация пунктов по строке текста
+  - фильтрацию при вводе текста в элемент input (нет в дизайне)
+  - вывод результатов должен происходить не на каждое нажатие клавиши, а после прекращения набора
+  - во время ожидания отрисовки можно показать индикатор загрузки
+  - анимацию разворачивания/сворачивания ветки
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  Результат разработки с локальными коммитами разработчика опубликовать в репозитории и прислать на него ссылку. Напишите инструкцию по запуску проекта в файле README.md в корне проекта.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Дополнительные пояснения:
+  Формат данных оглавления:
+  
+    entities – все элементы дерева, разделённые по типу
+  
+    pages – страницы
+      id – уникальный идентификатор пункта
+      title – заголовок страницы, используется в качестве текста для ссылки в оглавлении
+      url – относительный путь к странице, это href для ссылки
+      level – уровень вложенности пункта относительно корня дерева, в зависимости от  него ставится внутренний отступ в ноде
+      parentId – указатель на идентификатор родителя, во вложенном списке которого нужно отрисовать пункт
+      pages – список идентификаторов вложенных страниц
+      anchors – список идентификаторов якорей, которые нужно отрисовать при активации пункта
+      tabIndex – игнорируем
+      disqus_id – игнорируем
+  
+    anchors – якоря, они отрисовываются только после выбора страницы, к которой относятся
+      id – уникальный идентификатор пункта
+      title – заголовок якоря, используется в качестве текста для ссылки
+      url – адрес страницы, на которой находится якорь
+      anchor – сам якорь в формате `#anchor-name`, из url и anchor формируется href для ссылки
+      level – уровень вложенности пункта относительно корня дерева, в зависимости от  него ставится внутренний отступ в ноде
+      disqus_id – игнорируем
+    
+    topLevelIds – список идентификаторов пунктов первого уровня
+  
+## Дизайн: 
+  - Сделайте простой шаблон страницы, чтобы оглавление оказалось слева, как показано в макете. Шапку, футер и контент реализовывать не нужно. В макете есть гайд по поведению меню при выборе пункта, наведению и т.п.
+  - Якоря (anchors) отрисовываются только при активации пункта оглавления страницы, к которой они относятся, при этом вся ветка выделяется серым фоном.
