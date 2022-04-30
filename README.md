@@ -1,5 +1,5 @@
 # How To Run:
-- 1) json-server HelpTOC.json --watch --port 3001- 2) npm start
+  npm start
 
 # Task Description:
 
