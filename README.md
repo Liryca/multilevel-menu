@@ -3,6 +3,9 @@
 
 # Task Description:
 
+https://www.jetbrains.com/help/idea/2018.3/HelpTOC.json
+
+
 ## Требования:
   - Использовать актуальную версию библиотеки React для реализации логики и представления.
   - Для написания стилей желательно использовать PostCSS, LESS/SASS, CSS-модули или CSS-in-JS библиотеку.
